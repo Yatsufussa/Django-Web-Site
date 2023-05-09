@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<hr>
+<!--Exact product info-->
+Name:{{product.product_name}}<br>
+More info: {{product.product_des}}<br>
+Price: {{product.product_price}}<br>
+Product count: {{product.product_count}}<br>
+Product Category: {{product.product_category}}
+<hr>
+<form method="post">
+    {% srcf_token %}
+    <input type="number" name="user_product_quantity">
+    <button>Zakazat</button>
+</form>
+</body>
+</html>
