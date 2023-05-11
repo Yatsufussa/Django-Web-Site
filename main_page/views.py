@@ -32,12 +32,13 @@ def index(request):
 def current_category(request,pk):
     category = models.Product.objects.get(id = pk)
     context = {'products':category}
-    return render(request, 'current_categories.html', context)
+    return render(request, 'categrory_products.html', context)
 
 def get_exact_category(request,pk):
     exact_category = models.Category.objects.get(id=pk)
+    categories = models.Category.objects.all()
     category_products = models.Product.objects.filter(product_category= exact_category)
-    return render(request, 'exact_category.html', {'category_products': category_products})
+    return render(request, 'categrory_products.html', {'category_products': category_products,'categories':categories})
 
 # Get exact product
 def get_exact_product(request, pk):
@@ -49,11 +50,13 @@ def get_exact_product(request, pk):
                             user_product = product,
                             user_product_quantity = request.POST.get('user_product_quantity'))
     return redirect('/cart')
-    return render(request,'exact_product.html',context)
+    return render(request,'about_product.html',context)
 
 def get_user_cart(request):
     user_cart = Cart.objects.filter(user_id = request.user.id)
-    return render(request,'user_cart.html',{'cart':user_cart})
+    total = sum([i.total_for_product for i in user_cart])
+    context = {'cart': user_cart,'total': total}
+    return render(request,'user_cart.html',context)
 
 # Making order
 def complete_order(request):

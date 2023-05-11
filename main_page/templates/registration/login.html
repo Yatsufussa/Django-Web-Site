@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Log in</title>
+    <title>Hello World</title>
 </head>
 <body>
-<form action="" method="post">
+
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button>Log In</button>
+    <button>Войти</button>
 </form>
+
 </body>
 </html>
